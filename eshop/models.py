@@ -33,22 +33,29 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-class Hoodies(Product):
+class Notebook(Product):
 
-    size = models.CharField(max_length=255,verbose_name="size")
-    color = models.CharField(max_length=255, verbose_name="color")
-    style = models.CharField(max_length=255, verbose_name="style")
-    firm = models.CharField(max_length=255, verbose_name="firm")
+    diagonal = models.CharField(max_length=255,verbose_name="Diagonal")
+    display_type = models.CharField(max_length=255, verbose_name="Display type")
+    procesor_freq = models.CharField(max_length=255, verbose_name="Processor freq.")
+    ram = models.CharField(max_length=255, verbose_name="Ram")
+    video = models.CharField(max_length=255, verbose_name="Video")
+    time_without_charge = models.CharField(max_length=255, verbose_name="Time without charge")
 
     def __str__(self):
         return "{} : {}".format(self.category.name, self.title)
 
-class Tshirt(Product):
+class Smartphone(Product):
 
-    size = models.CharField(max_length=255, verbose_name="size")
-    color = models.CharField(max_length=255, verbose_name="color")
-    style = models.CharField(max_length=255, verbose_name="style")
-    firm = models.CharField(max_length=255, verbose_name="firm")
+    diagonal = models.CharField(max_length=255, verbose_name="Diagonal")
+    display_type = models.CharField(max_length=255, verbose_name="Display type")
+    resolution = models.CharField(max_length=255, verbose_name="Resolution")
+    accum_volume = models.CharField(max_length=255, verbose_name="Accum Volume")
+    ram = models.CharField(max_length=255, verbose_name="Ram")
+    sd = models.BooleanField(max_length=255, verbose_name="SD")
+    sd_volume_max = models.CharField(max_length=255, verbose_name="SD volume max")
+    main_cam_ap = models.CharField(max_length=255, verbose_name="Main cam")
+    frontal_cam_ap = models.CharField(max_length=255, verbose_name="Frontal cam")
 
     def __str__(self):
         return "{} : {}".format(self.category_name, self.title)
