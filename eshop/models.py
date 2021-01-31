@@ -65,11 +65,11 @@ class CartProduct(models.Model):
 
     user = models.ForeignKey("Customer",verbose_name='Buyers', on_delete=models.CASCADE)
     cart = models.ForeignKey("Cart", verbose_name="Cart", on_delete=models.CASCADE, related_name="related_products")
-    contet_type = models.ForeignKey(ContentType, on_delete = models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete = models.CASCADE)
     object_id = models.PositiveIntegerField()
-    #content_object = GenericForeignKey("content_type","object_id")
+    content_object = GenericForeignKey("content_type","object_id")
     qty = models.PositiveIntegerField(default=1)
-    final_price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name="Total amaut")
+    final_price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name="Total amount")
 
     def __str__(self):
         return "Product {} (for cart)".format(self.product.title)
