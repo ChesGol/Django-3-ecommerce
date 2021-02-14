@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 from .views import (
     BaseView,
     ProductDetailView,
@@ -11,7 +12,9 @@ from .views import (
     DeleteFromCartView,
     ChangeQTYView,
     CheckoutView,
-    MakeOrderView
+    MakeOrderView,
+    LoginView,
+    RegistrationView
 )
 
 urlpatterns = [
@@ -25,6 +28,9 @@ urlpatterns = [
     path('change-qty/<str:slug>/', ChangeQTYView.as_view(), name='change_qty'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
     path('make-order/', MakeOrderView.as_view(), name='make_order'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    path('registration/', RegistrationView.as_view(), name='registration'),
 
 ]
 
