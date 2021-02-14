@@ -1,25 +1,14 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.utils import timezone
 
 User = get_user_model()
 
 
-
-
-
-
-
-
-
-
 class Category(models.Model):
-
     name = models.CharField(max_length=255, verbose_name='Category name')
     slug = models.SlugField(unique=True)
-
 
     def __str__(self):
         return self.name
@@ -29,8 +18,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-
-
     category = models.ForeignKey(Category, verbose_name='Category', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name='Title')
     slug = models.SlugField(unique=True)
@@ -45,19 +32,10 @@ class Product(models.Model):
         return self.__class__.__name__.lower()
 
     def get_absolut_url(self):
-        return reverse('product_detail',kwargs={'slug':self.slug})
-
-
-
-
-
-
-
-
+        return reverse('product_detail', kwargs={'slug': self.slug})
 
 
 class CartProduct(models.Model):
-
     user = models.ForeignKey('Customer', verbose_name='Buyer', on_delete=models.CASCADE)
     cart = models.ForeignKey('Cart', verbose_name='Cart', on_delete=models.CASCADE, related_name='related_products')
     product = models.ForeignKey(Product, verbose_name='Product', on_delete=models.CASCADE)
@@ -73,7 +51,6 @@ class CartProduct(models.Model):
 
 
 class Cart(models.Model):
-
     owner = models.ForeignKey('Customer', null=True, verbose_name='Owner', on_delete=models.CASCADE)
     products = models.ManyToManyField(CartProduct, blank=True, related_name='related_cart')
     total_products = models.PositiveIntegerField(default=0)
@@ -86,7 +63,6 @@ class Cart(models.Model):
 
 
 class Customer(models.Model):
-
     user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, verbose_name='Phone', null=True, blank=True)
     address = models.CharField(max_length=255, verbose_name='Address', null=True, blank=True)
@@ -97,7 +73,6 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
-
     STATUS_NEW = 'new'
     STATUS_IN_PROGRESS = 'in_progress'
     STATUS_READY = 'is_ready'
@@ -118,7 +93,8 @@ class Order(models.Model):
         (BUYING_TYPE_DELIVERY, 'Delivery')
     )
 
-    customer = models.ForeignKey(Customer, verbose_name='Buyer', related_name='related_orders', on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, verbose_name='Buyer', related_name='related_orders',
+                                 on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255, verbose_name='Name')
     last_name = models.CharField(max_length=255, verbose_name='Surname')
     phone = models.CharField(max_length=20, verbose_name='Phone')
