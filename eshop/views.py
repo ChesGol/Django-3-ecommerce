@@ -27,12 +27,15 @@ class BaseView(CartMixin, View):
 
 class ProductDetailView(CartMixin, DetailView):
 
+    model = Product
+    queryset = Product.objects.all()
     context_object_name = 'product'
     template_name = 'product_detail.html'
     slug_url_kwarg = 'slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['categories'] = self.get_object().category.__class__.objects.all()
         context['cart'] = self.cart
         return context
 
@@ -47,7 +50,18 @@ class CategoryDetailView(CartMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        category = self.get_object()
         context['cart'] = self.cart
+        context['categories'] = self.model.objects.all()
+        if not self.request.GET:
+            context['category_products'] = category.product_set.all()
+            return context
+        url_kwargs = {}
+        for item in self.request.GET:
+            if len(self.request.GET.getlist(item)) > 1:
+                url_kwargs[item] = self.request.GET.getlist(item)
+            else:
+                url_kwargs[item] = self.request.GET.get(item)
         return context
 
 
@@ -152,8 +166,7 @@ class LoginView(CartMixin, View):
 
     def get(self, request, *args, **kwargs):
         form = LoginForm(request.POST or None)
-        categories = Category.objects.all()
-        context = {'form': form, 'categories': categories, 'cart': self.cart}
+        context = {'form': form, 'cart': self.cart}
         return render(request, 'login.html', context)
 
     def post(self, request, *args, **kwargs):
@@ -173,8 +186,7 @@ class RegistrationView(CartMixin, View):
 
     def get(self, request, *args, **kwargs):
         form = RegistrationForm(request.POST or None)
-        categories = Category.objects.all()
-        context = {'form': form, 'categories': categories, 'cart': self.cart}
+        context = {'form': form, 'cart': self.cart}
         return render(request, 'registration.html', context)
 
     def post(self, request, *args, **kwargs):

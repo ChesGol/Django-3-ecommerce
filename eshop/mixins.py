@@ -3,7 +3,6 @@ from django.views.generic import View
 from .models import Cart, Customer
 
 
-
 class CartMixin(View):
 
     def dispatch(self, request, *args, **kwargs):
