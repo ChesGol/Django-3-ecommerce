@@ -3,13 +3,13 @@ from django.shortcuts import render
 from django.contrib.contenttypes.models import ContentType
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.views.generic import DetailView, View
-
-from .models import Category, Customer, CartProduct, Product
+from .models import Category, Customer, CartProduct, Product, Order
 from .mixins import CartMixin
 from .forms import OrderForm, LoginForm, RegistrationForm
 from .utils import recalc_cart
+import stripe
 
 
 class BaseView(CartMixin, View):
@@ -125,12 +125,21 @@ class CartView(CartMixin, View):
 class CheckoutView(CartMixin, View):
 
     def get(self, request):
+        stripe.api_key = "sk_test_51IMdwRIpP4Nmj1V1cgpIgJwJvLhr5o36DJdqceJLrg77gSsDJODfMtLcg6Bux732fRSZJsKdb6WHFB8OAK7eMD1H00WlNCUqGm"
+
+        intent = stripe.PaymentIntent.create(
+            amount=int(self.cart.final_price * 100),
+            currency='eur',
+            # Verify your integration in this guide by including this parameter
+            metadata={'integration_check': 'accept_a_payment'},
+        )
         categories = Category.objects.all()
         form = OrderForm(request.POST or None)
         context = {
             'cart': self.cart,
             'categories': categories,
-            'form': form
+            'form': form,
+            'client_secret': intent.client_secret
         }
         return render(request, 'checkout.html', context)
 
@@ -210,3 +219,35 @@ class RegistrationView(CartMixin, View):
             return HttpResponseRedirect('/')
         context = {'form': form, 'cart': self.cart}
         return render(request, 'registration.html', context)
+
+
+class ProfileView(CartMixin, View):
+
+    def get(self, request, *args, **kwargs):
+
+        customer = Customer.objects.get(user=request.user)
+        orders = Order.objects.filter(customer=customer).order_by('-created_at')
+        categories = Category.objects.all()
+        return render(request, 'profile.html', {'orders': orders, 'cart': self.cart, 'categories': categories})
+
+
+class PaidOnlineOrderView(CartMixin, View):
+
+    @transaction.atomic
+    def post(self, request):
+        customer = Customer.objects.get(user=request.user)
+        new_order = Order()
+        new_order.customer = customer
+        new_order.first_name = customer.user.first_name
+        new_order.last_name = customer.user.last_name
+        new_order.phone = customer.phone
+        new_order.address = customer.address
+        new_order.buying_type = Order.BUYING_TYPE_SELF
+        new_order.save()
+        self.cart.in_order = True
+        self.cart.save()
+        new_order.cart = self.cart
+        new_order.status = Order.STATUS_PAID
+        new_order.save()
+        customer.orders.add(new_order)
+        return JsonResponse({'status': 'paid'})

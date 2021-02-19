@@ -53,7 +53,7 @@ class Cart(models.Model):
     total_products = models.PositiveIntegerField(default=0)
     final_price = models.DecimalField(max_digits=9, default=0, decimal_places=2, verbose_name='Total price')
     in_order = models.BooleanField(default=False)
-    for_anonymous_user = models.BooleanField(default=False)
+    for_anonymous_user = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.id)
@@ -63,7 +63,7 @@ class Customer(models.Model):
     user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, verbose_name='Phone', null=True, blank=True)
     address = models.CharField(max_length=255, verbose_name='Address', null=True, blank=True)
-    orders = models.ManyToManyField('Order', verbose_name='Buyer orders', related_name='related_order')
+    orders = models.ManyToManyField('Order', blank=True, verbose_name='Buyer orders', related_name='related_order')
 
     def __str__(self):
         return f"Buyer: {self.user.first_name} {self.user.last_name}"
@@ -74,11 +74,13 @@ class Order(models.Model):
     STATUS_IN_PROGRESS = 'in_progress'
     STATUS_READY = 'is_ready'
     STATUS_COMPLETED = 'completed'
+    STATUS_PAID = 'paid'
 
     BUYING_TYPE_SELF = 'self'
     BUYING_TYPE_DELIVERY = 'delivery'
 
     STATUS_CHOICES = (
+        (STATUS_PAID, 'Order paid'),
         (STATUS_NEW, 'New order'),
         (STATUS_IN_PROGRESS, 'Order pending'),
         (STATUS_READY, 'Order ready'),
