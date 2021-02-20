@@ -14,4 +14,4 @@ before_script:
   - poetry install -vv
 test:
   script:
-    - poetry run py.test -vvxra --tb=short --cov=eshop --cov-report=term-missing tests
+    - poetry run py.test -vvxra --tb=short --nomigrations --cov=eshop --cov-report=term-missing tests
