@@ -8,15 +8,10 @@ class OrderForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['order_date'].label = 'Order date'
-
-    order_date = forms.DateField(widget=forms.TextInput(attrs={'type': 'date'}))
 
     class Meta:
         model = Order
-        fields = (
-            'first_name', 'last_name', 'phone', 'address', 'buying_type', 'order_date', 'comment'
-        )
+        fields = ('first_name', 'last_name', 'phone', 'address', 'buying_type', 'comment')
 
 
 class LoginForm(forms.ModelForm):
@@ -48,9 +43,11 @@ class RegistrationForm(forms.ModelForm):
 
     confirm_password = forms.CharField(widget=forms.PasswordInput)
     password = forms.CharField(widget=forms.PasswordInput)
-    phone = forms.CharField(required=False)
-    address = forms.CharField(required=False)
+    phone = forms.CharField(required=True)
+    address = forms.CharField(required=True)
     email = forms.EmailField(required=True)
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)

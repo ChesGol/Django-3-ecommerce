@@ -1,6 +1,5 @@
 from django.db import transaction
 from django.shortcuts import render
-from django.contrib.contenttypes.models import ContentType
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, JsonResponse
@@ -158,7 +157,6 @@ class MakeOrderView(CartMixin, View):
             new_order.phone = form.cleaned_data['phone']
             new_order.address = form.cleaned_data['address']
             new_order.buying_type = form.cleaned_data['buying_type']
-            new_order.order_date = form.cleaned_data['order_date']
             new_order.comment = form.cleaned_data['comment']
             new_order.save()
             self.cart.in_order = True

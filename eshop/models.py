@@ -53,7 +53,7 @@ class Cart(models.Model):
     total_products = models.PositiveIntegerField(default=0)
     final_price = models.DecimalField(max_digits=9, default=0, decimal_places=2, verbose_name='Total price')
     in_order = models.BooleanField(default=False)
-    for_anonymous_user = models.BooleanField(default=True)
+    for_anonymous_user = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.id)
@@ -61,8 +61,8 @@ class Cart(models.Model):
 
 class Customer(models.Model):
     user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
-    phone = models.CharField(max_length=20, verbose_name='Phone', null=True, blank=True)
-    address = models.CharField(max_length=255, verbose_name='Address', null=True, blank=True)
+    phone = models.CharField(max_length=20, verbose_name='Phone')
+    address = models.CharField(max_length=255, verbose_name='Address')
     orders = models.ManyToManyField('Order', blank=True, verbose_name='Buyer orders', related_name='related_order')
 
     def __str__(self):
@@ -98,7 +98,7 @@ class Order(models.Model):
     last_name = models.CharField(max_length=255, verbose_name='Surname')
     phone = models.CharField(max_length=20, verbose_name='Phone')
     cart = models.ForeignKey(Cart, verbose_name='Cart', on_delete=models.CASCADE, null=True, blank=True)
-    address = models.CharField(max_length=1024, verbose_name='Address', null=True, blank=True)
+    address = models.CharField(max_length=1024, verbose_name='Address')
     status = models.CharField(
         max_length=100,
         verbose_name='Order status',
