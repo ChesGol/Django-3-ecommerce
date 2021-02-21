@@ -99,9 +99,7 @@ class ChangeQTYView(CartMixin, View):
     def post(self, request, **kwargs):
         product_slug = kwargs.get('slug')
         product = Product.objects.get(slug=product_slug)
-        cart_product = CartProduct.objects.get(
-            user=self.cart.owner, cart=self.cart, product=product
-        )
+        cart_product = CartProduct.objects.get(user=self.cart.owner, cart=self.cart, product=product)
         qty = int(request.POST.get('qty'))
         cart_product.qty = qty
         cart_product.save()
@@ -129,7 +127,6 @@ class CheckoutView(CartMixin, View):
         intent = stripe.PaymentIntent.create(
             amount=int(self.cart.final_price * 100),
             currency='eur',
-            # Verify your integration in this guide by including this parameter
             metadata={'integration_check': 'accept_a_payment'},
         )
         categories = Category.objects.all()
@@ -171,12 +168,12 @@ class MakeOrderView(CartMixin, View):
 
 class LoginView(CartMixin, View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         form = LoginForm(request.POST or None)
         context = {'form': form, 'cart': self.cart}
         return render(request, 'login.html', context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         form = LoginForm(request.POST or None)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -191,12 +188,12 @@ class LoginView(CartMixin, View):
 
 class RegistrationView(CartMixin, View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         form = RegistrationForm(request.POST or None)
         context = {'form': form, 'cart': self.cart}
         return render(request, 'registration.html', context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         form = RegistrationForm(request.POST or None)
         if form.is_valid():
             new_user = form.save(commit=False)
@@ -221,7 +218,7 @@ class RegistrationView(CartMixin, View):
 
 class ProfileView(CartMixin, View):
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
 
         customer = Customer.objects.get(user=request.user)
         orders = Order.objects.filter(customer=customer).order_by('-created_at')

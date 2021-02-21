@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3 class="text-center mt-5 mb-5">Your cart {% if not cart.products.count %}empty{% endif %}</h3>
+<h3 class="text-center mt-5" style="margin-bottom: 250px">Your cart {% if not cart.products.count %}are empty{% endif %}</h3>
 {% if messages %}
     {% for message in messages %}
       <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -20,7 +20,7 @@
       <th scope="col">Image</th>
       <th scope="col">Price</th>
       <th scope="col">Qty</th>
-        <th scope="col">Total price</th>
+      <th scope="col">Total price</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
