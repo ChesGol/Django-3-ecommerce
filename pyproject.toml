@@ -10,6 +10,7 @@ Django = "^3.1.5"
 Pillow = "^8.1.0"
 django-crispy-forms = "^1.11.0"
 stripe = "^2.55.2"
+django-rosetta = "^0.9.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

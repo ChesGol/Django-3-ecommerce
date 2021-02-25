@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load i18n %}
 {% load static %}
 <html lang="en">
 
@@ -12,7 +13,9 @@
   <title>Eshop</title>
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
   <link href="" rel="stylesheet">
@@ -27,47 +30,64 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'base' %}">Eshop</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-              Categories
-            </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                {% for category in categories %}
-                <a class="dropdown-item" href=" {{ category.get_absolute_url }}">{{ category.name }} ({{ category.product_set.count }})</a>
-                {% endfor %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<div class="container">
+ <a class="navbar-brand" href="{% url 'base' %}">Eshop</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+  </button>
+<div class="collapse navbar-collapse" id="navbarResponsive">
+<ul class="navbar-nav">
+<li class="nav-item dropdown">
+<a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">
+ {% trans 'Categories' %}
+ </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+  {% for category in categories %}
+    <a class="dropdown-item" href=" {{ category.get_absolute_url }}">
+      {{ category.name }} ({{ category.product_set.count }})
+    </a>
+   {% endfor %}
               </div>
             </li>
             {% if not request.user.is_authenticated %}
             <li>
-              <a class="nav-link text-light" href="{% url 'login' %}">Login</a>
+              <a class="nav-link text-light" href="{% url 'login' %}">{% trans 'Login' %}</a>
             </li>
              <li>
-              <a class="nav-link text-light" href="{% url 'registration' %}">Sign up</a>
+              <a class="nav-link text-light" href="{% url 'registration' %}">{% trans 'Sign up' %}</a>
             </li>
             {% endif %}
             <li class="nav-item">
               {% if request.user.is_authenticated %}
-              <span class="navbar text text-light">Welcome, <span class="badge badge-danger">
-                <a style="text-decoration: none; font-size:14px; color: aliceblue" href="{% url 'profile' %}">{{ request.user.username }}</a>
-              </span>| <a style="color: white; text-decoration: none;" href="{% url 'logout' %}">Logout</a></span>
+              <span class="navbar text text-light">{% trans 'Welcome,' %} <span class="badge badge-danger">
+                <a style="text-decoration: none; font-size:14px; color: aliceblue"
+                   href="{% url 'profile' %}">{{ request.user.username }}</a>
+              </span>| <a style="color: white; text-decoration: none;" href="{% url 'logout' %}">{% trans 'Logout' %}</a></span>
               {% endif %}
             </li>
           </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'cart' %}">Cart <span class="badge badge-pill badge-danger">{{ cart.products.count }}</span></a>
+            <a class="nav-link" href="{% url 'cart' %}">{% trans 'Cart' %}
+              <span class="badge badge-pill badge-danger">{{ cart.products.count }}</span></a>
           </li>
         </ul>
       </div>
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_language_info_list for LANGUAGES as languages %}
+    <div class="languages" style="color: orange; text-decoration: none;" align="left";>
+    <span> {% trans "Language" %}: </span>
+        <span class="languages" style="color: darkred; text-decoration: none;">
+        {% for language in languages %}
+         <a style="color: darkgoldenrod; text-decoration: none;" href="/{{ language.code }}/"
+            {% if language.code == LANGUAGE_CODE %} class="selected"{% endif %}>
+             {{ language.name_local }}</a> </span>
+        {% endfor %}
+    </div>
     </div>
   </nav>
 
@@ -137,10 +157,10 @@
                 <hr>
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'add_to_cart' slug=product.slug %}">
-                  <button class="btn btn-danger">Add to cart</button>
+                  <button class="btn btn-danger">{% trans 'Add to cart' %}</button>
                 </a>
                 {% else %}
-                <span>Login or Sign up, if you want to buy.</span>
+                <span>{% trans 'Login or Sign up, if you want to buy.' %}</span>
                 {% endif %}
               </div>
             </div>
@@ -167,8 +187,10 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 

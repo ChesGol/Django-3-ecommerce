@@ -1,0 +1,346 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-25 15:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\eshop\forms.py:23 .\eshop\forms.py:54
+msgid "User name"
+msgstr ""
+
+#: .\eshop\forms.py:24 .\eshop\forms.py:55
+msgid "Password"
+msgstr ""
+
+#: .\eshop\forms.py:30
+msgid "User not found"
+msgstr ""
+
+#: .\eshop\forms.py:34
+msgid "Wrong password"
+msgstr ""
+
+#: .\eshop\forms.py:56
+msgid "Confirm password"
+msgstr ""
+
+#: .\eshop\forms.py:57
+msgid "Phone number"
+msgstr ""
+
+#: .\eshop\forms.py:58 .\eshop\templates\profile.html:81
+msgid "First name"
+msgstr ""
+
+#: .\eshop\forms.py:59 .\eshop\templates\profile.html:82
+msgid "Last name"
+msgstr ""
+
+#: .\eshop\forms.py:60 .\eshop\models.py:66 .\eshop\models.py:102
+msgid "Address"
+msgstr ""
+
+#: .\eshop\forms.py:61
+msgid "Email"
+msgstr ""
+
+#: .\eshop\forms.py:66
+msgid "Email already exists"
+msgstr ""
+
+#: .\eshop\forms.py:79
+msgid "Passwords don't match"
+msgstr ""
+
+#: .\eshop\models.py:11
+msgid "Category name"
+msgstr ""
+
+#: .\eshop\models.py:22
+msgid "Category"
+msgstr ""
+
+#: .\eshop\models.py:23
+msgid "Title"
+msgstr ""
+
+#: .\eshop\models.py:25 .\eshop\templates\cart.html:21
+#: .\eshop\templates\checkout.html:10 .\eshop\templates\profile.html:55
+msgid "Image"
+msgstr ""
+
+#: .\eshop\models.py:26 .\eshop\templates\product_detail.html:18
+msgid "Description"
+msgstr ""
+
+#: .\eshop\models.py:27 .\eshop\templates\cart.html:22
+#: .\eshop\templates\checkout.html:11 .\eshop\templates\product_detail.html:17
+#: .\eshop\templates\profile.html:56
+msgid "Price"
+msgstr ""
+
+#: .\eshop\models.py:37
+msgid "Customer"
+msgstr ""
+
+#: .\eshop\models.py:38 .\eshop\templates\base.html:74
+msgid "Cart"
+msgstr ""
+
+#: .\eshop\models.py:39 .\eshop\templates\profile.html:20
+#: .\eshop\templates\profile.html:50
+msgid "Product"
+msgstr ""
+
+#: .\eshop\models.py:40 .\eshop\templates\profile.html:57
+msgid "Quantity"
+msgstr ""
+
+#: .\eshop\models.py:41 .\eshop\models.py:55 .\eshop\templates\cart.html:24
+#: .\eshop\templates\checkout.html:13 .\eshop\templates\profile.html:19
+#: .\eshop\templates\profile.html:58
+msgid "Total price"
+msgstr ""
+
+#: .\eshop\models.py:52
+msgid "Owner"
+msgstr ""
+
+#: .\eshop\models.py:53
+msgid "Products"
+msgstr ""
+
+#: .\eshop\models.py:54
+msgid "Total products"
+msgstr ""
+
+#: .\eshop\models.py:64
+msgid "User"
+msgstr ""
+
+#: .\eshop\models.py:65 .\eshop\models.py:100 .\eshop\templates\profile.html:83
+msgid "Phone"
+msgstr ""
+
+#: .\eshop\models.py:67
+msgid "customer orders"
+msgstr ""
+
+#: .\eshop\models.py:96
+msgid "customer"
+msgstr ""
+
+#: .\eshop\models.py:98
+msgid "first_name"
+msgstr ""
+
+#: .\eshop\models.py:99
+msgid "last_name"
+msgstr ""
+
+#: .\eshop\models.py:105
+msgid "Order status"
+msgstr ""
+
+#: .\eshop\models.py:111
+msgid "Order type"
+msgstr ""
+
+#: .\eshop\models.py:115
+msgid "Commentary"
+msgstr ""
+
+#: .\eshop\models.py:116
+msgid "Order created"
+msgstr ""
+
+#: .\eshop\models.py:117
+msgid "Order completed"
+msgstr ""
+
+#: .\eshop\settings.py:102
+msgid "English"
+msgstr "Anglų"
+
+#: .\eshop\settings.py:103
+msgid "Lithuania"
+msgstr "Lietuvių"
+
+#: .\eshop\templates\base.html:45
+msgid "Categories"
+msgstr ""
+
+#: .\eshop\templates\base.html:57 .\eshop\templates\login.html:7
+#: .\eshop\templates\login.html:12
+msgid "Login"
+msgstr ""
+
+#: .\eshop\templates\base.html:60
+msgid "Sign up"
+msgstr ""
+
+#: .\eshop\templates\base.html:65
+msgid "Welcome,"
+msgstr ""
+
+#: .\eshop\templates\base.html:68
+msgid "Logout"
+msgstr ""
+
+#: .\eshop\templates\base.html:83
+msgid "Language"
+msgstr ""
+
+#: .\eshop\templates\base.html:161 .\eshop\templates\category_detail.html:24
+#: .\eshop\templates\product_detail.html:21
+msgid "Add to cart"
+msgstr ""
+
+#: .\eshop\templates\base.html:164 .\eshop\templates\product_detail.html:23
+msgid "Login or Sign up, if you want to buy."
+msgstr ""
+
+#: .\eshop\templates\cart.html:5
+msgid "Your cart"
+msgstr ""
+
+#: .\eshop\templates\cart.html:5
+msgid "are empty"
+msgstr ""
+
+#: .\eshop\templates\cart.html:20 .\eshop\templates\checkout.html:9
+#: .\eshop\templates\profile.html:54
+msgid "Name"
+msgstr ""
+
+#: .\eshop\templates\cart.html:23 .\eshop\templates\checkout.html:12
+msgid "Qty"
+msgstr ""
+
+#: .\eshop\templates\cart.html:25
+msgid "Action"
+msgstr ""
+
+#: .\eshop\templates\cart.html:39
+msgid "Change qty"
+msgstr ""
+
+#: .\eshop\templates\cart.html:45
+msgid "Delete from cart"
+msgstr ""
+
+#: .\eshop\templates\cart.html:51 .\eshop\templates\checkout.html:28
+#: .\eshop\templates\profile.html:73
+msgid "Total"
+msgstr ""
+
+#: .\eshop\templates\cart.html:54
+msgid "Make order"
+msgstr ""
+
+#: .\eshop\templates\category_detail.html:7
+#: .\eshop\templates\product_detail.html:6
+msgid "Home"
+msgstr ""
+
+#: .\eshop\templates\category_detail.html:26
+msgid "Login or Sign up if you want buy."
+msgstr ""
+
+#: .\eshop\templates\checkout.html:5
+msgid "Order"
+msgstr ""
+
+#: .\eshop\templates\checkout.html:35
+msgid "Order form"
+msgstr ""
+
+#: .\eshop\templates\checkout.html:38
+msgid "Place your order"
+msgstr ""
+
+#: .\eshop\templates\checkout.html:42
+msgid "Submit"
+msgstr ""
+
+#: .\eshop\templates\checkout.html:46
+msgid "Pay for the order by card"
+msgstr ""
+
+#: .\eshop\templates\checkout.html:56
+msgid "Submit Payment"
+msgstr ""
+
+#: .\eshop\templates\profile.html:6
+msgid "User orders"
+msgstr ""
+
+#: .\eshop\templates\profile.html:10
+msgid "You dont have any orders."
+msgstr ""
+
+#: .\eshop\templates\profile.html:10
+msgid "Please start buy our products"
+msgstr ""
+
+#: .\eshop\templates\profile.html:17
+msgid "Number"
+msgstr ""
+
+#: .\eshop\templates\profile.html:18
+msgid "Status"
+msgstr ""
+
+#: .\eshop\templates\profile.html:21
+msgid "More"
+msgstr ""
+
+#: .\eshop\templates\profile.html:37
+msgid "Details"
+msgstr ""
+
+#: .\eshop\templates\profile.html:44
+msgid "Order details"
+msgstr ""
+
+#: .\eshop\templates\profile.html:45 .\eshop\templates\profile.html:86
+msgid "Close"
+msgstr ""
+
+#: .\eshop\templates\profile.html:80
+msgid "Customer information"
+msgstr ""
+
+#: .\eshop\templates\registration.html:7 .\eshop\templates\registration.html:12
+msgid "Sign Up"
+msgstr ""
+
+#: .\eshop\views.py:79
+msgid "Product added"
+msgstr ""
+
+#: .\eshop\views.py:94
+msgid "Product deleted"
+msgstr ""
+
+#: .\eshop\views.py:108
+msgid "Quantity changed"
+msgstr ""
+
+#: .\eshop\views.py:165
+msgid "Thank you for order, manager call you"
+msgstr ""

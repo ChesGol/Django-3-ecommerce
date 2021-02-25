@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
+from django.conf.urls.i18n import i18n_patterns
 from .views import (
     BaseView,
     ProductDetailView,
@@ -19,7 +20,7 @@ from .views import (
     PaidOnlineOrderView
 )
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', BaseView.as_view(), name='base'),
     path('products/<str:slug>/', ProductDetailView.as_view(), name='product_detail'),
@@ -35,8 +36,8 @@ urlpatterns = [
     path('registration/', RegistrationView.as_view(), name='registration'),
     path('profile/', ProfileView.as_view(), name='profile'),
     path('paid-online-order/', PaidOnlineOrderView.as_view(), name='paid_online'),
-
-]
+    path('rosetta/', include('rosetta.urls')),
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
