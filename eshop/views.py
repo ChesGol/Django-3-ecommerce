@@ -1,6 +1,7 @@
 from django.db import transaction
 from django.shortcuts import render
 from django.contrib import messages
+from django.utils.translation import get_language
 from django.contrib.auth import authenticate, login
 from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponseRedirect, JsonResponse
@@ -77,7 +78,10 @@ class AddToCartView(CartMixin, View):
             self.cart.products.add(cart_product)
         recalc_cart(self.cart)
         messages.add_message(request, messages.INFO, _("Product added"))
-        return HttpResponseRedirect('/lt/cart/') or HttpResponseRedirect('/cart/')
+        if get_language() == 'en':
+            return HttpResponseRedirect('/cart/')
+        else:
+            return HttpResponseRedirect('/lt/cart/')
 
 
 class DeleteFromCartView(CartMixin, View):
@@ -92,7 +96,10 @@ class DeleteFromCartView(CartMixin, View):
         cart_product.delete()
         recalc_cart(self.cart)
         messages.add_message(request, messages.INFO, _("Product deleted"))
-        return HttpResponseRedirect('/lt/cart/') or HttpResponseRedirect('/cart/')
+        if get_language() == 'en':
+            return HttpResponseRedirect('/cart/')
+        else:
+            return HttpResponseRedirect('/lt/cart/')
 
 
 class ChangeQTYView(CartMixin, View):
@@ -106,7 +113,10 @@ class ChangeQTYView(CartMixin, View):
         cart_product.save()
         recalc_cart(self.cart)
         messages.add_message(request, messages.INFO, _("Quantity changed"))
-        return HttpResponseRedirect('/lt/cart/') or HttpResponseRedirect('/cart/')
+        if get_language() == 'en':
+            return HttpResponseRedirect('/cart/')
+        else:
+            return HttpResponseRedirect('/lt/cart/')
 
 
 class CartView(CartMixin, View):
@@ -164,7 +174,10 @@ class MakeOrderView(CartMixin, View):
             customer.orders.add(new_order)
             messages.add_message(request, messages.INFO, _('Thank you for order, manager call you'))
             return HttpResponseRedirect('/')
-        return HttpResponseRedirect('/lt/checkout/') or HttpResponseRedirect('/checkout/')
+        if get_language() == 'en':
+            return HttpResponseRedirect('/checkout/')
+        else:
+            return HttpResponseRedirect('/lt/checkout/')
 
 
 class LoginView(CartMixin, View):
@@ -243,6 +256,7 @@ class PaidOnlineOrderView(CartMixin, View):
         self.cart.in_order = True
         self.cart.save()
         new_order.status = Order.STATUS_PAID
+        new_order.cart = self.cart
         new_order.save()
         customer.orders.add(new_order)
         return JsonResponse({'status': 'paid'})
