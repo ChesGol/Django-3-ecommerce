@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-
+from django.utils.translation import gettext_lazy as _
 from .models import Order
 
 
@@ -20,18 +20,18 @@ class LoginForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].label = 'User name'
-        self.fields['password'].label = 'Password'
+        self.fields['username'].label = _('User name')
+        self.fields['password'].label = _('Password')
 
     def clean(self):
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
         if not User.objects.filter(username=username).exists():
-            raise forms.ValidationError(f'User {username} not found')
+            raise forms.ValidationError(_('User not found'))
         user = User.objects.filter(username=username).first()
         if user:
             if not user.check_password(password):
-                raise forms.ValidationError('Wrong password')
+                raise forms.ValidationError(_('Wrong password'))
         return self.cleaned_data
 
     class Meta:
@@ -51,32 +51,32 @@ class RegistrationForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
-        self.fields['username'].label = 'User name'
-        self.fields['password'].label = 'Password'
-        self.fields['confirm_password'].label = 'Confirm password'
-        self.fields['phone'].label = 'Phone number'
-        self.fields['first_name'].label = 'First name'
-        self.fields['last_name'].label = 'Last name'
-        self.fields['address'].label = 'Address'
-        self.fields['email'].label = 'Email'
+        self.fields['username'].label = _('User name')
+        self.fields['password'].label = _('Password')
+        self.fields['confirm_password'].label = _('Confirm password')
+        self.fields['phone'].label = _('Phone number')
+        self.fields['first_name'].label = _('First name')
+        self.fields['last_name'].label = _('Last name')
+        self.fields['address'].label = _('Address')
+        self.fields['email'].label = _('Email')
 
     def clean_email(self):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(f'Email {email} already exists')
+            raise forms.ValidationError(_('Email already exists'))
         return email
 
     def clean_username(self):
         username = self.cleaned_data['username']
         if User.objects.filter(username=username).exists():
-            raise forms.ValidationError(f'User with {username} already exists')
+            raise forms.ValidationError(_('User already exists'))
         return username
 
     def clean(self):
         password = self.cleaned_data['password']
         confirm_password = self.cleaned_data['confirm_password']
         if password != confirm_password:
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError(_("Passwords don't match"))
         return self.cleaned_data
 
     class Meta:

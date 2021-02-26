@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.utils import timezone
@@ -7,7 +8,7 @@ User = get_user_model()
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255, verbose_name='Category name')
+    name = models.CharField(max_length=255, verbose_name=_('Category name'))
     slug = models.SlugField(unique=True)
 
     def __str__(self):
@@ -18,12 +19,12 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, verbose_name='Category', on_delete=models.CASCADE)
-    title = models.CharField(max_length=255, verbose_name='Title')
+    category = models.ForeignKey(Category, verbose_name=_('Category'), on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
     slug = models.SlugField(unique=True)
-    image = models.ImageField(verbose_name='Image')
-    description = models.TextField(verbose_name='Description', null=True)
-    price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Price')
+    image = models.ImageField(verbose_name=_('Image'))
+    description = models.TextField(verbose_name=_('Description'), null=True)
+    price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name=_('Price'))
 
     def __str__(self):
         return self.title
@@ -33,11 +34,11 @@ class Product(models.Model):
 
 
 class CartProduct(models.Model):
-    user = models.ForeignKey('Customer', verbose_name='Buyer', on_delete=models.CASCADE)
-    cart = models.ForeignKey('Cart', verbose_name='Cart', on_delete=models.CASCADE, related_name='related_products')
-    product = models.ForeignKey(Product, verbose_name='Product', on_delete=models.CASCADE)
-    qty = models.PositiveIntegerField(default=1)
-    final_price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Total price')
+    user = models.ForeignKey('Customer', verbose_name=_('Customer'), on_delete=models.CASCADE)
+    cart = models.ForeignKey('Cart', verbose_name=_('Cart'), on_delete=models.CASCADE, related_name='related_products')
+    product = models.ForeignKey(Product, verbose_name=_('Product'), on_delete=models.CASCADE)
+    qty = models.PositiveIntegerField(default=1, verbose_name=_('Quantity'))
+    final_price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name=_('Total price'))
 
     def __str__(self):
         return f"Product: {self.product.title} (for cart)"
@@ -48,10 +49,10 @@ class CartProduct(models.Model):
 
 
 class Cart(models.Model):
-    owner = models.ForeignKey('Customer', null=True, verbose_name='Owner', on_delete=models.CASCADE)
-    products = models.ManyToManyField(CartProduct, blank=True, related_name='related_cart')
-    total_products = models.PositiveIntegerField(default=0)
-    final_price = models.DecimalField(max_digits=9, default=0, decimal_places=2, verbose_name='Total price')
+    owner = models.ForeignKey('Customer', null=True, verbose_name=_('Owner'), on_delete=models.CASCADE)
+    products = models.ManyToManyField(CartProduct, blank=True, verbose_name=_('Products'), related_name='related_cart')
+    total_products = models.PositiveIntegerField(default=0, verbose_name=_('Total products'))
+    final_price = models.DecimalField(max_digits=9, default=0, decimal_places=2, verbose_name=_('Total price'))
     in_order = models.BooleanField(default=False)
     for_anonymous_user = models.BooleanField(default=False)
 
@@ -60,10 +61,10 @@ class Cart(models.Model):
 
 
 class Customer(models.Model):
-    user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
-    phone = models.CharField(max_length=20, verbose_name='Phone')
-    address = models.CharField(max_length=255, verbose_name='Address')
-    orders = models.ManyToManyField('Order', blank=True, verbose_name='Buyer orders', related_name='related_order')
+    user = models.ForeignKey(User, verbose_name=_('User'), on_delete=models.CASCADE)
+    phone = models.CharField(max_length=20, verbose_name=_('Phone'))
+    address = models.CharField(max_length=255, verbose_name=_('Address'))
+    orders = models.ManyToManyField('Order', blank=True, verbose_name=_('customer orders'), related_name='related_order')
 
     def __str__(self):
         return f"Buyer: {self.user.first_name} {self.user.last_name}"
@@ -92,28 +93,28 @@ class Order(models.Model):
         (BUYING_TYPE_DELIVERY, 'Delivery')
     )
 
-    customer = models.ForeignKey(Customer, verbose_name='Buyer', related_name='related_orders',
+    customer = models.ForeignKey(Customer, verbose_name=_('customer'), related_name='related_orders',
                                  on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255, verbose_name='Name')
-    last_name = models.CharField(max_length=255, verbose_name='Surname')
-    phone = models.CharField(max_length=20, verbose_name='Phone')
-    cart = models.ForeignKey(Cart, verbose_name='Cart', on_delete=models.CASCADE, null=True, blank=True)
-    address = models.CharField(max_length=1024, verbose_name='Address')
+    first_name = models.CharField(max_length=255, verbose_name=_('first_name'))
+    last_name = models.CharField(max_length=255, verbose_name=_('last_name'))
+    phone = models.CharField(max_length=20, verbose_name=_('Phone'))
+    cart = models.ForeignKey(Cart, verbose_name=_('Cart'), on_delete=models.CASCADE, null=True, blank=True)
+    address = models.CharField(max_length=1024, verbose_name=_('Address'))
     status = models.CharField(
         max_length=100,
-        verbose_name='Order status',
+        verbose_name=_('Order status'),
         choices=STATUS_CHOICES,
         default=STATUS_NEW
     )
     buying_type = models.CharField(
         max_length=100,
-        verbose_name='Order type',
+        verbose_name=_('buying_type'),
         choices=BUYING_TYPE_CHOICES,
         default=BUYING_TYPE_SELF
     )
-    comment = models.TextField(verbose_name='Commentary', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now=True, verbose_name='Order created')
-    order_date = models.DateField(verbose_name='Order completed', default=timezone.now)
+    comment = models.TextField(verbose_name=_('Commentary'), null=True, blank=True)
+    created_at = models.DateTimeField(auto_now=True, verbose_name=_('Order created'))
+    order_date = models.DateField(verbose_name=_('Order completed'), default=timezone.now)
 
     def __str__(self):
         return str(self.id)

@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
     <nav aria-label="breadcrumb" class="mt-3">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'base' %}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
-      </ol>
+     <ol class="breadcrumb">
+     <li class="breadcrumb-item"><a href="{% url 'base' %}">{% trans 'Home' %}</a></li>
+     <li class="breadcrumb-item"><a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></li>
+     <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+     </ol>
     </nav>
 <div class="row " style="margin-bottom: 280px">
     <div class="col-md-4">
@@ -13,13 +14,13 @@
     </div>
     <div class="col-md-8">
         <h3>{{ product.title }}</h3>
-        <p>Price: {{ product.price }} Eur.</p>
-        <p>Description: {{ product.description }}</p>
+        <p>{% trans 'Price' %}: {{ product.price }} Eur.</p>
+        <p>{% trans 'Description' %}: {{ product.description }}</p>
         <hr>
          {% if request.user.is_authenticated %}
-        <a href="{% url 'add_to_cart' slug=product.slug %}"><button class="btn btn-danger">Add to cart</button></a>
+        <a href="{% url 'add_to_cart' slug=product.slug %}"><button class="btn btn-danger">{% trans 'Add to cart' %}</button></a>
          {% else %}
-        <span>Login or Sign up, if you want to buy.</span>
+        <span>{% trans 'Login or Sign up, if you want to buy.' %}</span>
         {% endif %}
     </div>
 </div>

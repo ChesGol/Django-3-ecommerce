@@ -1,0 +1,373 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-26 12:26+0200\n"
+"PO-Revision-Date: 2021-02-25 15:00+0000\n"
+"Last-Translator: b'  <>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
+"X-Translated-Using: django-rosetta 0.9.5\n"
+
+#: .\eshop\forms.py:23 .\eshop\forms.py:54
+msgid "User name"
+msgstr "Vartotojo vardas"
+
+#: .\eshop\forms.py:24 .\eshop\forms.py:55
+msgid "Password"
+msgstr "Slaptažodis"
+
+#: .\eshop\forms.py:30
+msgid "User not found"
+msgstr "Vartotojas nerastas!"
+
+#: .\eshop\forms.py:34
+msgid "Wrong password"
+msgstr "Blogas Slaptažodis!"
+
+#: .\eshop\forms.py:56
+msgid "Confirm password"
+msgstr "Slaptažodžio patvirtinimas"
+
+#: .\eshop\forms.py:57
+msgid "Phone number"
+msgstr "Telefono numeris"
+
+#: .\eshop\forms.py:58 .\eshop\templates\profile.html:81
+msgid "First name"
+msgstr "Vardas"
+
+#: .\eshop\forms.py:59 .\eshop\templates\profile.html:82
+msgid "Last name"
+msgstr "Pavardė"
+
+#: .\eshop\forms.py:60 .\eshop\models.py:66 .\eshop\models.py:102
+msgid "Address"
+msgstr "Adresas"
+
+#: .\eshop\forms.py:61
+msgid "Email"
+msgstr "El. paštas"
+
+#: .\eshop\forms.py:66
+msgid "Email already exists"
+msgstr "Toks El. paštas jau naudojamas!"
+
+#: .\eshop\forms.py:72
+#, fuzzy
+#| msgid "Email already exists"
+msgid "User already exists"
+msgstr "Toks vartotojas jau yra!"
+
+#: .\eshop\forms.py:79
+msgid "Passwords don't match"
+msgstr "Slaptažodžiai nesutampa"
+
+#: .\eshop\models.py:11
+msgid "Category name"
+msgstr "Kategorija"
+
+#: .\eshop\models.py:22
+msgid "Category"
+msgstr "Kategorija"
+
+#: .\eshop\models.py:23
+msgid "Title"
+msgstr "Pavadinimas"
+
+#: .\eshop\models.py:25 .\eshop\templates\cart.html:21
+#: .\eshop\templates\checkout.html:10 .\eshop\templates\profile.html:55
+msgid "Image"
+msgstr "Paveikslėlis"
+
+#: .\eshop\models.py:26 .\eshop\templates\product_detail.html:18
+msgid "Description"
+msgstr "Aprašymas"
+
+#: .\eshop\models.py:27 .\eshop\templates\cart.html:22
+#: .\eshop\templates\checkout.html:11 .\eshop\templates\product_detail.html:17
+#: .\eshop\templates\profile.html:56
+msgid "Price"
+msgstr "Kaina"
+
+#: .\eshop\models.py:37
+msgid "Customer"
+msgstr "klientas"
+
+#: .\eshop\models.py:38 .\eshop\models.py:101 .\eshop\templates\base.html:74
+msgid "Cart"
+msgstr "Krepšelis"
+
+#: .\eshop\models.py:39 .\eshop\templates\profile.html:20
+#: .\eshop\templates\profile.html:50
+msgid "Product"
+msgstr "Prekė"
+
+#: .\eshop\models.py:40 .\eshop\templates\profile.html:57
+msgid "Quantity"
+msgstr "Kiekis"
+
+#: .\eshop\models.py:41 .\eshop\models.py:55 .\eshop\templates\cart.html:24
+#: .\eshop\templates\checkout.html:13 .\eshop\templates\profile.html:19
+#: .\eshop\templates\profile.html:58
+msgid "Total price"
+msgstr "Galutinė kaina"
+
+#: .\eshop\models.py:52
+msgid "Owner"
+msgstr "Savininkas"
+
+#: .\eshop\models.py:53
+msgid "Products"
+msgstr "Prekės"
+
+#: .\eshop\models.py:54
+msgid "Total products"
+msgstr "Viso prekių"
+
+#: .\eshop\models.py:64
+msgid "User"
+msgstr "Vartotojas"
+
+#: .\eshop\models.py:65 .\eshop\models.py:100 .\eshop\templates\profile.html:83
+msgid "Phone"
+msgstr "Telefonas"
+
+#: .\eshop\models.py:67
+msgid "customer orders"
+msgstr "klientų užsakymai"
+
+#: .\eshop\models.py:96
+msgid "customer"
+msgstr "klientas"
+
+#: .\eshop\models.py:98
+msgid "first_name"
+msgstr "Vardas"
+
+#: .\eshop\models.py:99
+msgid "last_name"
+msgstr "Pavardė"
+
+#: .\eshop\models.py:105
+msgid "Order status"
+msgstr "Užsakymo būsena"
+
+#: .\eshop\models.py:111
+msgid "buying_type"
+msgstr "Pirkimo tipas"
+
+#: .\eshop\models.py:115
+msgid "Commentary"
+msgstr "Komentaras"
+
+#: .\eshop\models.py:116
+msgid "Order created"
+msgstr "Užsakymas sukurtas"
+
+#: .\eshop\models.py:117
+msgid "Order completed"
+msgstr "Užsakymas įvykdytas"
+
+#: .\eshop\settings.py:102
+msgid "English"
+msgstr "Anglų"
+
+#: .\eshop\settings.py:103
+msgid "Lithuania"
+msgstr "Lietuvių"
+
+#: .\eshop\templates\base.html:45
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: .\eshop\templates\base.html:57 .\eshop\templates\login.html:7
+#: .\eshop\templates\login.html:12
+msgid "Login"
+msgstr "Užeiti"
+
+#: .\eshop\templates\base.html:60
+msgid "Sign up"
+msgstr "Registracija"
+
+#: .\eshop\templates\base.html:65
+msgid "Welcome,"
+msgstr "Sveiki,"
+
+#: .\eshop\templates\base.html:68
+msgid "Logout"
+msgstr "Išeiti"
+
+#: .\eshop\templates\base.html:83
+msgid "Language"
+msgstr "Kalba"
+
+#: .\eshop\templates\base.html:160 .\eshop\templates\category_detail.html:24
+#: .\eshop\templates\product_detail.html:21
+msgid "Add to cart"
+msgstr "Įdėti į krepšelį"
+
+#: .\eshop\templates\base.html:163 .\eshop\templates\product_detail.html:23
+msgid "Login or Sign up, if you want to buy."
+msgstr "Užeikite arba registruokities, jei norit pirkti!"
+
+#: .\eshop\templates\cart.html:5
+msgid "Your cart"
+msgstr "Jūsų krepšelis"
+
+#: .\eshop\templates\cart.html:5
+msgid "are empty"
+msgstr "yra tuščias"
+
+#: .\eshop\templates\cart.html:20 .\eshop\templates\checkout.html:9
+#: .\eshop\templates\profile.html:54
+msgid "Name"
+msgstr "Pavadinimas"
+
+#: .\eshop\templates\cart.html:23 .\eshop\templates\checkout.html:12
+msgid "Qty"
+msgstr "Kiekis"
+
+#: .\eshop\templates\cart.html:25
+msgid "Action"
+msgstr "Veiksmas"
+
+#: .\eshop\templates\cart.html:39
+msgid "Change qty"
+msgstr "Pakeisti kiekį"
+
+#: .\eshop\templates\cart.html:45
+msgid "Delete from cart"
+msgstr "Pašalinti iš krepšelio"
+
+#: .\eshop\templates\cart.html:51 .\eshop\templates\checkout.html:28
+#: .\eshop\templates\profile.html:73
+msgid "Total"
+msgstr "Viso"
+
+#: .\eshop\templates\cart.html:54
+msgid "Make order"
+msgstr "Užsakyti"
+
+#: .\eshop\templates\category_detail.html:7
+#: .\eshop\templates\product_detail.html:6
+msgid "Home"
+msgstr "Pagrindinis"
+
+#: .\eshop\templates\category_detail.html:26
+msgid "Login or Sign up if you want buy."
+msgstr "Užeikite arba registruokities, jei norit pirkti!"
+
+#: .\eshop\templates\checkout.html:5
+msgid "Order"
+msgstr "Užsakymas"
+
+#: .\eshop\templates\checkout.html:35
+msgid "Order form"
+msgstr "Užsakymo forma"
+
+#: .\eshop\templates\checkout.html:38
+msgid "Place your order"
+msgstr "Pateikite užsakymą"
+
+#: .\eshop\templates\checkout.html:42
+msgid "Submit"
+msgstr "Pateikti"
+
+#: .\eshop\templates\checkout.html:46
+msgid "Pay for the order by card"
+msgstr "Atsiskaitykite už užsakymą kortele"
+
+#: .\eshop\templates\checkout.html:56
+msgid "Submit Payment"
+msgstr "Pateikti mokėjimą"
+
+#: .\eshop\templates\profile.html:6
+msgid "User orders"
+msgstr "klientų užsakymai"
+
+#: .\eshop\templates\profile.html:10
+msgid "You dont have any orders."
+msgstr "Jūs neturite jokių užsakymų."
+
+#: .\eshop\templates\profile.html:10
+msgid "Please start buy our products"
+msgstr "Pradėkite pirkti mūsų prekės!"
+
+#: .\eshop\templates\profile.html:17
+msgid "Number"
+msgstr "Numeris"
+
+#: .\eshop\templates\profile.html:18
+msgid "Status"
+msgstr "Būsena"
+
+#: .\eshop\templates\profile.html:21
+msgid "More"
+msgstr "Daugiau"
+
+#: .\eshop\templates\profile.html:37
+msgid "Details"
+msgstr "Detalės"
+
+#: .\eshop\templates\profile.html:44
+msgid "Order details"
+msgstr "Užsakymo detalės"
+
+#: .\eshop\templates\profile.html:45 .\eshop\templates\profile.html:86
+msgid "Close"
+msgstr "Uždaryti"
+
+#: .\eshop\templates\profile.html:80
+msgid "Customer information"
+msgstr "Kliento informacija"
+
+#: .\eshop\templates\registration.html:7 .\eshop\templates\registration.html:12
+msgid "Sign Up"
+msgstr "Registracija"
+
+#: .\eshop\views.py:80
+msgid "Product added"
+msgstr "Prekė pridėta"
+
+#: .\eshop\views.py:98
+msgid "Product deleted"
+msgstr "Prekė pašalinta"
+
+#: .\eshop\views.py:115
+msgid "Quantity changed"
+msgstr "Kiekis pakeistas"
+
+#: .\eshop\views.py:175
+msgid "Thank you for order, manager call you!"
+msgstr "Ačiū už užsakymą, vadybininkas jums paskambins!"
+
+#~ msgid "Order type"
+#~ msgstr "Užsakymo tipas"
+
+#~ msgid "orders"
+#~ msgstr "užsakymai"
+
+#, fuzzy
+#~ msgid "phone"
+#~ msgstr "Telefonas"
+
+#, fuzzy
+#~ msgid "address"
+#~ msgstr "Adresas"
+
+#, fuzzy
+#~ msgid "comment"
+#~ msgstr "Komentaras"

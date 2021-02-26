@@ -1,7 +1,9 @@
 from django.db import transaction
 from django.shortcuts import render
 from django.contrib import messages
+from django.utils.translation import get_language
 from django.contrib.auth import authenticate, login
+from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponseRedirect, JsonResponse
 from django.views.generic import DetailView, View
 from .models import Category, Customer, CartProduct, Product, Order
@@ -32,7 +34,7 @@ class ProductDetailView(CartMixin, DetailView):
     template_name = 'product_detail.html'
     slug_url_kwarg = 'slug'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = self.get_object().category.__class__.objects.all()
         context['cart'] = self.cart
@@ -47,7 +49,7 @@ class CategoryDetailView(CartMixin, DetailView):
     template_name = 'category_detail.html'
     slug_url_kwarg = 'slug'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         category = self.get_object()
         context['cart'] = self.cart
@@ -66,7 +68,7 @@ class CategoryDetailView(CartMixin, DetailView):
 
 class AddToCartView(CartMixin, View):
 
-    def get(self, request, **kwargs):
+    def get(self, request, *args, **kwargs):
         product_slug = kwargs.get('slug')
         product = Product.objects.get(slug=product_slug)
         cart_product, created = CartProduct.objects.get_or_create(
@@ -75,8 +77,11 @@ class AddToCartView(CartMixin, View):
         if created:
             self.cart.products.add(cart_product)
         recalc_cart(self.cart)
-        messages.add_message(request, messages.INFO, "Product added")
-        return HttpResponseRedirect('/cart/')
+        messages.add_message(request, messages.INFO, _("Product added"))
+        if get_language() == 'en':
+            return HttpResponseRedirect('/cart/')
+        else:
+            return HttpResponseRedirect('/lt/cart/')
 
 
 class DeleteFromCartView(CartMixin, View):
@@ -90,13 +95,16 @@ class DeleteFromCartView(CartMixin, View):
         self.cart.products.remove(cart_product)
         cart_product.delete()
         recalc_cart(self.cart)
-        messages.add_message(request, messages.INFO, "Product deleted")
-        return HttpResponseRedirect('/cart/')
+        messages.add_message(request, messages.INFO, _("Product deleted"))
+        if get_language() == 'en':
+            return HttpResponseRedirect('/cart/')
+        else:
+            return HttpResponseRedirect('/lt/cart/')
 
 
 class ChangeQTYView(CartMixin, View):
 
-    def post(self, request, **kwargs):
+    def post(self, request, *args, **kwargs):
         product_slug = kwargs.get('slug')
         product = Product.objects.get(slug=product_slug)
         cart_product = CartProduct.objects.get(user=self.cart.owner, cart=self.cart, product=product)
@@ -104,8 +112,11 @@ class ChangeQTYView(CartMixin, View):
         cart_product.qty = qty
         cart_product.save()
         recalc_cart(self.cart)
-        messages.add_message(request, messages.INFO, "Quantity changed")
-        return HttpResponseRedirect('/cart/')
+        messages.add_message(request, messages.INFO, _("Quantity changed"))
+        if get_language() == 'en':
+            return HttpResponseRedirect('/cart/')
+        else:
+            return HttpResponseRedirect('/lt/cart/')
 
 
 class CartView(CartMixin, View):
@@ -143,7 +154,7 @@ class CheckoutView(CartMixin, View):
 class MakeOrderView(CartMixin, View):
 
     @transaction.atomic
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         form = OrderForm(request.POST or None)
         customer = Customer.objects.get(user=request.user)
         if form.is_valid():
@@ -161,9 +172,15 @@ class MakeOrderView(CartMixin, View):
             new_order.cart = self.cart
             new_order.save()
             customer.orders.add(new_order)
-            messages.add_message(request, messages.INFO, 'Thank you for order, manager call you')
-            return HttpResponseRedirect('/')
-        return HttpResponseRedirect('/checkout/')
+            messages.add_message(request, messages.INFO, _('Thank you for order, manager call you!'))
+            if get_language() == 'en':
+                return HttpResponseRedirect('/en/')
+            else:
+                return HttpResponseRedirect('/lt/')
+        if get_language() == 'en':
+            return HttpResponseRedirect('/checkout/')
+        else:
+            return HttpResponseRedirect('/lt/checkout/')
 
 
 class LoginView(CartMixin, View):
@@ -181,7 +198,10 @@ class LoginView(CartMixin, View):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                if get_language() == 'en':
+                    return HttpResponseRedirect('/en/')
+                else:
+                    return HttpResponseRedirect('/lt/')
         context = {'form': form, 'cart': self.cart}
         return render(request, 'login.html', context)
 
@@ -211,7 +231,10 @@ class RegistrationView(CartMixin, View):
             )
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
-            return HttpResponseRedirect('/')
+            if get_language() == 'en':
+                return HttpResponseRedirect('/en/')
+            else:
+                return HttpResponseRedirect('/lt/')
         context = {'form': form, 'cart': self.cart}
         return render(request, 'registration.html', context)
 
@@ -229,7 +252,7 @@ class ProfileView(CartMixin, View):
 class PaidOnlineOrderView(CartMixin, View):
 
     @transaction.atomic
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         customer = Customer.objects.get(user=request.user)
         new_order = Order()
         new_order.customer = customer
@@ -241,8 +264,11 @@ class PaidOnlineOrderView(CartMixin, View):
         new_order.save()
         self.cart.in_order = True
         self.cart.save()
-        new_order.cart = self.cart
         new_order.status = Order.STATUS_PAID
+        new_order.cart = self.cart
         new_order.save()
         customer.orders.add(new_order)
-        return JsonResponse({'status': 'paid'})
+        if get_language() == 'en':
+            return HttpResponseRedirect('/en/') and JsonResponse({'status': 'paid'})
+        else:
+            return HttpResponseRedirect('/lt/') and JsonResponse({'status': 'paid'})
