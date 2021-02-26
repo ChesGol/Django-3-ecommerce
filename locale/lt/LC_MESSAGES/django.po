@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 15:34+0200\n"
+"POT-Creation-Date: 2021-02-26 12:26+0200\n"
 "PO-Revision-Date: 2021-02-25 15:00+0000\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,11 +31,11 @@ msgstr "Slaptažodis"
 
 #: .\eshop\forms.py:30
 msgid "User not found"
-msgstr "Vartotojas nerastas"
+msgstr "Vartotojas nerastas!"
 
 #: .\eshop\forms.py:34
 msgid "Wrong password"
-msgstr "Blogas Slaptažodis"
+msgstr "Blogas Slaptažodis!"
 
 #: .\eshop\forms.py:56
 msgid "Confirm password"
@@ -63,7 +63,13 @@ msgstr "El. paštas"
 
 #: .\eshop\forms.py:66
 msgid "Email already exists"
-msgstr "Toks El. paštas jau naudojamas"
+msgstr "Toks El. paštas jau naudojamas!"
+
+#: .\eshop\forms.py:72
+#, fuzzy
+#| msgid "Email already exists"
+msgid "User already exists"
+msgstr "Toks vartotojas jau yra!"
 
 #: .\eshop\forms.py:79
 msgid "Passwords don't match"
@@ -71,7 +77,7 @@ msgstr "Slaptažodžiai nesutampa"
 
 #: .\eshop\models.py:11
 msgid "Category name"
-msgstr "Kategorijos pavadinimas"
+msgstr "Kategorija"
 
 #: .\eshop\models.py:22
 msgid "Category"
@@ -100,7 +106,7 @@ msgstr "Kaina"
 msgid "Customer"
 msgstr "klientas"
 
-#: .\eshop\models.py:38 .\eshop\templates\base.html:74
+#: .\eshop\models.py:38 .\eshop\models.py:101 .\eshop\templates\base.html:74
 msgid "Cart"
 msgstr "Krepšelis"
 
@@ -160,8 +166,8 @@ msgid "Order status"
 msgstr "Užsakymo būsena"
 
 #: .\eshop\models.py:111
-msgid "Order type"
-msgstr "Užsakymo tipas"
+msgid "buying_type"
+msgstr "Pirkimo tipas"
 
 #: .\eshop\models.py:115
 msgid "Commentary"
@@ -185,7 +191,7 @@ msgstr "Lietuvių"
 
 #: .\eshop\templates\base.html:45
 msgid "Categories"
-msgstr "Kategorija"
+msgstr "Kategorijos"
 
 #: .\eshop\templates\base.html:57 .\eshop\templates\login.html:7
 #: .\eshop\templates\login.html:12
@@ -206,16 +212,16 @@ msgstr "Išeiti"
 
 #: .\eshop\templates\base.html:83
 msgid "Language"
-msgstr ""
+msgstr "Kalba"
 
-#: .\eshop\templates\base.html:161 .\eshop\templates\category_detail.html:24
+#: .\eshop\templates\base.html:160 .\eshop\templates\category_detail.html:24
 #: .\eshop\templates\product_detail.html:21
 msgid "Add to cart"
 msgstr "Įdėti į krepšelį"
 
-#: .\eshop\templates\base.html:164 .\eshop\templates\product_detail.html:23
+#: .\eshop\templates\base.html:163 .\eshop\templates\product_detail.html:23
 msgid "Login or Sign up, if you want to buy."
-msgstr "Užeikite arba registruokities, jei norit pirkti"
+msgstr "Užeikite arba registruokities, jei norit pirkti!"
 
 #: .\eshop\templates\cart.html:5
 msgid "Your cart"
@@ -228,7 +234,7 @@ msgstr "yra tuščias"
 #: .\eshop\templates\cart.html:20 .\eshop\templates\checkout.html:9
 #: .\eshop\templates\profile.html:54
 msgid "Name"
-msgstr "Vardas"
+msgstr "Pavadinimas"
 
 #: .\eshop\templates\cart.html:23 .\eshop\templates\checkout.html:12
 msgid "Qty"
@@ -262,7 +268,7 @@ msgstr "Pagrindinis"
 
 #: .\eshop\templates\category_detail.html:26
 msgid "Login or Sign up if you want buy."
-msgstr "Užeikite arba registruokities, jei norit pirkti"
+msgstr "Užeikite arba registruokities, jei norit pirkti!"
 
 #: .\eshop\templates\checkout.html:5
 msgid "Order"
@@ -298,7 +304,7 @@ msgstr "Jūs neturite jokių užsakymų."
 
 #: .\eshop\templates\profile.html:10
 msgid "Please start buy our products"
-msgstr "Pradėkite pirkti mūsų prekės"
+msgstr "Pradėkite pirkti mūsų prekės!"
 
 #: .\eshop\templates\profile.html:17
 msgid "Number"
@@ -332,21 +338,24 @@ msgstr "Kliento informacija"
 msgid "Sign Up"
 msgstr "Registracija"
 
-#: .\eshop\views.py:79
+#: .\eshop\views.py:80
 msgid "Product added"
 msgstr "Prekė pridėta"
 
-#: .\eshop\views.py:94
+#: .\eshop\views.py:98
 msgid "Product deleted"
 msgstr "Prekė pašalinta"
 
-#: .\eshop\views.py:108
+#: .\eshop\views.py:115
 msgid "Quantity changed"
 msgstr "Kiekis pakeistas"
 
-#: .\eshop\views.py:165
-msgid "Thank you for order, manager call you"
-msgstr "Ačiū už užsakymą, vadybininkas jums paskambins"
+#: .\eshop\views.py:175
+msgid "Thank you for order, manager call you!"
+msgstr "Ačiū už užsakymą, vadybininkas jums paskambins!"
+
+#~ msgid "Order type"
+#~ msgstr "Užsakymo tipas"
 
 #~ msgid "orders"
 #~ msgstr "užsakymai"
@@ -358,9 +367,6 @@ msgstr "Ačiū už užsakymą, vadybininkas jums paskambins"
 #, fuzzy
 #~ msgid "address"
 #~ msgstr "Adresas"
-
-#~ msgid "buying_type"
-#~ msgstr "Pirkimo tipas"
 
 #, fuzzy
 #~ msgid "comment"

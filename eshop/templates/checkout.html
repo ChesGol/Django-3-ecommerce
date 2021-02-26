@@ -57,6 +57,7 @@
     </form>
   </div>
 </div>
+{% get_current_language as LANGUAGE_CODE %}
 <script>
   var form = document.getElementById('payment-form');
   var stripe = Stripe('pk_test_51IMdwRIpP4Nmj1V19HKuYG6Tu7LDekAfE5XwOq8PYZtkc4vVoPUZZb78K4tR84ElH1NsCS6xRP3vVbGqBhbQkH9K00XBp1TTzL');
@@ -114,14 +115,25 @@
             formData.append("first_name", document.getElementById('card-button').dataset.username);
             formData.append("csrfmiddlewaretoken", csrftoken)
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/en/paid-online-order/");
-            xhr.open("POST", "/lt/paid-online-order/");
-            xhr.send(formData);
-            xhr.onreadystatechange = function() {
+            if (window.location == "http://127.0.0.1:8000/en/checkout/") {
+              xhr.open("POST", "/en/paid-online-order/");
+              xhr.send(formData);
+              xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
-                  window.location.replace("http://127.0.0.1:8000");
-                  alert('Your order has been successfully paid! The manager will contact you')
+                  window.location.replace("http://127.0.0.1:8000/en/");
+                  alert('Your order has been successfully paid! The manager will contact you!')
                 }
+            }}
+            else if (window.location == "http://127.0.0.1:8000/lt/checkout/")
+            {
+              xhr.open("POST", "/lt/paid-online-order/");
+              xhr.send(formData);
+              xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                  window.location.replace("http://127.0.0.1:8000/lt/");
+                  alert('Jūsų užsakymas sėkmingai apmokėtas! Vadybininkas susisieks su jumis!')
+                }
+            }
             }
         }
       }

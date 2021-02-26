@@ -172,8 +172,11 @@ class MakeOrderView(CartMixin, View):
             new_order.cart = self.cart
             new_order.save()
             customer.orders.add(new_order)
-            messages.add_message(request, messages.INFO, _('Thank you for order, manager call you'))
-            return HttpResponseRedirect('/')
+            messages.add_message(request, messages.INFO, _('Thank you for order, manager call you!'))
+            if get_language() == 'en':
+                return HttpResponseRedirect('/en/')
+            else:
+                return HttpResponseRedirect('/lt/')
         if get_language() == 'en':
             return HttpResponseRedirect('/checkout/')
         else:
@@ -195,7 +198,10 @@ class LoginView(CartMixin, View):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                if get_language() == 'en':
+                    return HttpResponseRedirect('/en/')
+                else:
+                    return HttpResponseRedirect('/lt/')
         context = {'form': form, 'cart': self.cart}
         return render(request, 'login.html', context)
 
@@ -225,7 +231,10 @@ class RegistrationView(CartMixin, View):
             )
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             login(request, user)
-            return HttpResponseRedirect('/')
+            if get_language() == 'en':
+                return HttpResponseRedirect('/en/')
+            else:
+                return HttpResponseRedirect('/lt/')
         context = {'form': form, 'cart': self.cart}
         return render(request, 'registration.html', context)
 
@@ -259,4 +268,7 @@ class PaidOnlineOrderView(CartMixin, View):
         new_order.cart = self.cart
         new_order.save()
         customer.orders.add(new_order)
-        return JsonResponse({'status': 'paid'})
+        if get_language() == 'en':
+            return HttpResponseRedirect('/en/') and JsonResponse({'status': 'paid'})
+        else:
+            return HttpResponseRedirect('/lt/') and JsonResponse({'status': 'paid'})

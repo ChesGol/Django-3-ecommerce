@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 15:34+0200\n"
+"POT-Creation-Date: 2021-02-26 12:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,6 +62,10 @@ msgstr ""
 msgid "Email already exists"
 msgstr ""
 
+#: .\eshop\forms.py:72
+msgid "User already exists"
+msgstr ""
+
 #: .\eshop\forms.py:79
 msgid "Passwords don't match"
 msgstr ""
@@ -97,7 +101,7 @@ msgstr ""
 msgid "Customer"
 msgstr ""
 
-#: .\eshop\models.py:38 .\eshop\templates\base.html:74
+#: .\eshop\models.py:38 .\eshop\models.py:101 .\eshop\templates\base.html:74
 msgid "Cart"
 msgstr ""
 
@@ -157,7 +161,7 @@ msgid "Order status"
 msgstr ""
 
 #: .\eshop\models.py:111
-msgid "Order type"
+msgid "buying_type"
 msgstr ""
 
 #: .\eshop\models.py:115
@@ -205,12 +209,12 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: .\eshop\templates\base.html:161 .\eshop\templates\category_detail.html:24
+#: .\eshop\templates\base.html:160 .\eshop\templates\category_detail.html:24
 #: .\eshop\templates\product_detail.html:21
 msgid "Add to cart"
 msgstr ""
 
-#: .\eshop\templates\base.html:164 .\eshop\templates\product_detail.html:23
+#: .\eshop\templates\base.html:163 .\eshop\templates\product_detail.html:23
 msgid "Login or Sign up, if you want to buy."
 msgstr ""
 
@@ -329,18 +333,18 @@ msgstr ""
 msgid "Sign Up"
 msgstr ""
 
-#: .\eshop\views.py:79
+#: .\eshop\views.py:80
 msgid "Product added"
 msgstr ""
 
-#: .\eshop\views.py:94
+#: .\eshop\views.py:98
 msgid "Product deleted"
 msgstr ""
 
-#: .\eshop\views.py:108
+#: .\eshop\views.py:115
 msgid "Quantity changed"
 msgstr ""
 
-#: .\eshop\views.py:165
+#: .\eshop\views.py:175
 msgid "Thank you for order, manager call you"
 msgstr ""
