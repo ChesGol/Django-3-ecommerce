@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-26 12:26+0200\n"
+"POT-Creation-Date: 2021-02-26 18:25+0200\n"
 "PO-Revision-Date: 2021-02-25 15:00+0000\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,14 +66,12 @@ msgid "Email already exists"
 msgstr "Toks El. paštas jau naudojamas!"
 
 #: .\eshop\forms.py:72
-#, fuzzy
-#| msgid "Email already exists"
 msgid "User already exists"
-msgstr "Toks vartotojas jau yra!"
+msgstr "Toks vartotojas jau yra! "
 
 #: .\eshop\forms.py:79
 msgid "Passwords don't match"
-msgstr "Slaptažodžiai nesutampa"
+msgstr "Slaptažodžiai nesutampa!"
 
 #: .\eshop\models.py:11
 msgid "Category name"
@@ -288,7 +286,7 @@ msgstr "Pateikti"
 
 #: .\eshop\templates\checkout.html:46
 msgid "Pay for the order by card"
-msgstr "Atsiskaitykite už užsakymą kortele"
+msgstr "Atsiskaityti už užsakymą kortele"
 
 #: .\eshop\templates\checkout.html:56
 msgid "Submit Payment"
@@ -353,21 +351,3 @@ msgstr "Kiekis pakeistas"
 #: .\eshop\views.py:175
 msgid "Thank you for order, manager call you!"
 msgstr "Ačiū už užsakymą, vadybininkas jums paskambins!"
-
-#~ msgid "Order type"
-#~ msgstr "Užsakymo tipas"
-
-#~ msgid "orders"
-#~ msgstr "užsakymai"
-
-#, fuzzy
-#~ msgid "phone"
-#~ msgstr "Telefonas"
-
-#, fuzzy
-#~ msgid "address"
-#~ msgstr "Adresas"
-
-#, fuzzy
-#~ msgid "comment"
-#~ msgstr "Komentaras"
