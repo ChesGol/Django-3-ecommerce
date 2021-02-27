@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load i18n %}
 {% block content %}
-<h3 class="text-center mt-5 mb-5">{% trans 'Order' %}</h3>
+<h3 class="text-center mt-2 mb-2">{% trans 'Order' %}</h3>
 <table class="table">
   <thead>
     <tr>
@@ -32,14 +32,14 @@
   </tbody>
 </table>
 <hr>
-<h3 class="text-center mt-5 mb-5">{% trans 'Order form' %}</h3>
+<h3 class="text-center mt-2 mb-2">{% trans 'Order form' %}</h3>
 <div class="row">
   <div class="col-md-6">
     <h3 class="text-center">{% trans 'Place your order' %}</h3>
     <form action="{% url 'make_order' %}" method="POST">
       {% csrf_token %}
       {{ form|crispy }}
-      <input type="submit" class="btn btn-success btn-block mb-3" value="{% trans 'Submit' %}">
+      <input type="submit" class="btn btn-success btn-block mb-5" value="{% trans 'Submit' %}">
     </form>
   </div>
   <div class="col-md-6">
