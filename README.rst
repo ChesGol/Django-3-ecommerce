@@ -9,8 +9,8 @@
 
 # Clone project:
     1.open IDE that you use
-    2.type in terminal: https://gitlab.com/PythonLT2/eshop.git to clone project
-    3.or you can download project from https://gitlab.com/PythonLT2/eshop and open in your IDE
+    2.type in terminal: https://github.com/ChesGol/Django-3-ecommerce.git to clone project
+    3.or you can download project and open in your IDE
 
 # Steps to run server:
     Go to project root directory and type in terminal:
